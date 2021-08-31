@@ -1,0 +1,11 @@
+#!/bin/sh
+
+NVIM_CONFIG_DIR=$(cd $(dirname $0); pwd)
+
+if [ -d $HOME/.config/nvim ] && [ ! -h $HOME/.config/nvim ]; then
+  echo "backup to $HOME/.config/nvim.bak"
+  mv $HOME/.config/nvim $HOME/.config/nvim.bak
+fi
+
+rm -rf $HOME/.config/nvim
+ln -sf "$NVIM_CONFIG_DIR"/.config/nvim $HOME/.config/nvim
